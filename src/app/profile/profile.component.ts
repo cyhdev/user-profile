@@ -12,7 +12,7 @@ export class ProfileComponent implements OnInit {
   address: any = "";
 
   userUpdate: any = {};
-  addressUpdate: string = "";
+  addressUpdate;
 
   diseasDropdown: any = [];
 
@@ -47,7 +47,7 @@ export class ProfileComponent implements OnInit {
   }
 
   addDis(disea) {
-    if(disea) {
+    if (disea) {
       this.diseas.push(disea);
     }
     this.selectedDisea = "";
@@ -78,7 +78,7 @@ export class ProfileComponent implements OnInit {
 
     //Show image preview
     var reader = new FileReader();
-    reader.onload = (event:any) => {
+    reader.onload = (event: any) => {
       this.imageUrl = event.target.result;
       localStorage.setItem("img", this.imageUrl);
     }
@@ -86,7 +86,7 @@ export class ProfileComponent implements OnInit {
   }
 
   reloadImg() {
-    if(localStorage.getItem("img")) {
+    if (localStorage.getItem("img")) {
       this.imageUrl = localStorage.getItem("img");
     }
   }
