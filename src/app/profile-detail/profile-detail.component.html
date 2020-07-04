@@ -1,0 +1,99 @@
+<div class="container">
+  <br>
+  <div class="col-12 text-center">
+    <!-- <button type="button" class="btn btn-secondary btn-sm float-right row">
+      <i class="fas fa-user-edit"></i>
+    </button> -->
+    <img [src]="imageUrl" class="img-thumbnail rounded-circle" style="max-width: 65%" data-toggle="modal" data-target="#photoModal">
+
+    <div class="col-12 form-group">
+      <ul class="list-unstyled">
+        <li>
+          <h3>{{user.firstName}} {{user.lastName}}</h3>
+        </li>
+        <li>{{user.headline}}</li>
+        <li>{{user.email}}</li>
+        <li>{{user.gender}}</li>
+      </ul>
+    </div>
+
+    <div class="col-12 form-group">
+      <div class="row font-weight-light">
+        <div class="col-4">Age</div>
+        <div class="col-4">Weight</div>
+        <div class="col-4">Height</div>
+      </div>
+      <div class="row font-weight-bold">
+        <div class="col-4">{{user.age}}</div>
+        <div class="col-4">{{user.weight}}</div>
+        <div class="col-4">{{user.height}}</div>
+      </div>
+    </div>
+
+    <div class="col-12 form-group">
+      <h5>
+        <label>Emergency Contact</label>
+      </h5>
+      <button type="button" class="btn btn-success form-control">{{user.eContact}}</button>
+    </div>
+  </div>
+  <hr>
+
+  <div class="form-group">
+    <h6>SKILL SET
+      <button type="button" class="btn btn-secondary btn-sm float-right">
+        <i class="fas fa-pen-alt"></i>
+      </button>
+    </h6>
+    <b>Top Skills
+    </b>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item" *ngFor="let skill of skills.top">
+        {{skill}}
+      </li>
+    </ul>
+  </div>
+
+  <div class="form-group">
+    <h6>EXPERIENCE
+      <button type="button" class="btn btn-secondary btn-sm float-right">
+        <i class="fas fa-pen-alt"></i>
+      </button>
+    </h6>
+    <div class="col-12" *ngFor="let exp of workExp">
+      <b>{{exp.title}}</b>
+      <br> {{exp.company}}
+      <br> {{exp.from}} - {{exp.to}} ({{exp.period}})
+      <hr>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <h6>EDUCATION
+      <button type="button" class="btn btn-secondary btn-sm float-right">
+        <i class="fas fa-pen-alt"></i>
+      </button>
+    </h6>
+    <div class="col-12" *ngFor="let education of educations">
+      <b>{{education.school}}</b>
+      <br> {{education.qualif}}, {{education.field}}
+      <br> {{education.from}} - {{education.to}}
+      <hr>
+    </div>
+  </div>
+</div>
+
+<!-- Photo Zoom Modal -->
+<div class="modal fade" id="photoModal" tabindex="-1" role="dialog" aria-labelledby="diseasModalEdit" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+      <div class="modal-content customModal">
+        <div class="modal-body">
+          <form>
+            <div class="form-group text-center">
+              <img [src]="imageUrl" class="img-fluid rounded-circle" style="max-width: 65%">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>

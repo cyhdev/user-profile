@@ -1,0 +1,226 @@
+<div class="container">
+  <br>
+  <div class="col-12 text-center">
+    <button type="button" class="btn btn-secondary btn-sm float-right row" data-toggle="modal" data-target="#profileModal" (click)="openEditProfileModal()">
+      <i class="fas fa-user-edit"></i>
+    </button>
+    <img [src]="imageUrl" class="img-thumbnail rounded-circle" style="max-width: 65%" data-toggle="modal" data-target="#photoModal">
+
+    <div class="col-12 form-group">
+      <ul class="list-unstyled">
+        <li>
+          <h3>{{user.firstName}} {{user.lastName}}</h3>
+        </li>
+        <li>{{user.headline}}</li>
+        <li>{{user.email}}</li>
+        <li>{{user.gender}}</li>
+      </ul>
+    </div>
+
+    <div class="col-12 form-group">
+      <div class="row font-weight-light">
+        <div class="col-4">Age</div>
+        <div class="col-4">Weight</div>
+        <div class="col-4">Height</div>
+      </div>
+      <div class="row font-weight-bold">
+        <div class="col-4">{{user.age}}</div>
+        <div class="col-4">{{user.weight}}</div>
+        <div class="col-4">{{user.height}}</div>
+      </div>
+    </div>
+
+    <div class="col-12 form-group">
+      <h5>
+        <label>Emergency Contact</label>
+      </h5>
+      <button type="button" class="btn btn-success form-control">{{user.eContact}}</button>
+    </div>
+
+    <div class="col-12 form-group">
+      <button type="button" class="btn btn-light form-control" routerLink="/detail">View More</button>
+    </div>
+  </div>
+  <hr>
+
+  <div class="form-group">
+    <h6>DISEAS
+      <button type="button" class="btn btn-secondary btn-sm float-right" data-toggle="modal" data-target="#diseasModal">
+        <i class="fas fa-pen-alt"></i>
+      </button>
+    </h6>
+    {{diseas}}
+  </div>
+
+  <div class="form-group">
+    <h6>ADDRESS
+      <button type="button" class="btn btn-secondary btn-sm float-right" data-toggle="modal" data-target="#addressModal" (click)="openEditProfileAddressModal()">
+        <i class="fas fa-pen-alt"></i>
+      </button>
+    </h6>
+    {{address.addressline1}}, {{address.addressline2}}, {{address.city}}, {{address.state}}, {{address.postcode}}, {{address.country}}
+  </div>
+</div>
+
+<!-- Profile Update Modal -->
+<div class="modal fade" id="profileModal" tabindex="-1" role="dialog" aria-labelledby="profileModalEdit" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalScrollableTitle">Edit Info</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group text-center">
+            <img [src]="imageUrl" class="img-thumbnail rounded-circle" style="max-width: 65%">
+            <input type="file" #Image accept="image/*" (change)="handleFileInput($event.target.files)">
+            <!-- <img src="../../assets/photo.PNG" class="img-thumbnail rounded-circle" style="max-width: 65%">
+            <button type="button" class="btn btn-secondary btn-sm float-right row" data-toggle="modal" data-target="#profileModal" (click)="openEditProfileModal()">
+              <i class="fas fa-pen-alt"></i>
+            </button> -->
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">First name:</label>
+            <input type="text" class="form-control" id="firstName" [(ngModel)]="userUpdate.firstName" name="firstName">
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Last name:</label>
+            <input type="text" class="form-control" id="lastName" [(ngModel)]="userUpdate.lastName" name="lastName">
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Headline:</label>
+            <input type="text" class="form-control" id="headline" [(ngModel)]="userUpdate.headline" name="headline">
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Email:</label>
+            <input type="text" class="form-control" id="email" [(ngModel)]="userUpdate.email" name="email">
+          </div>
+          <!-- <div class="form-group">
+            <label for="message-text" class="col-form-label">Address:</label>
+            <textarea class="form-control" id="address" [(ngModel)]="addressUpdate" name="address"></textarea>
+          </div> -->
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Age:</label>
+            <input type="number" class="form-control" id="age" [(ngModel)]="userUpdate.age" name="age" min="1" max="120">
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Weight (kg):</label>
+            <input type="number" class="form-control" id="weight" [(ngModel)]="userUpdate.weight" name="weight" min="1" max="500">
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Height (cm):</label>
+            <input type="number" class="form-control" id="height" [(ngModel)]="userUpdate.height" name="height" min="1" max="300">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="saveProfile()">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Diseas Update Modal -->
+<div class="modal fade" id="diseasModal" tabindex="-1" role="dialog" aria-labelledby="diseasModalEdit" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalScrollableTitle">Edit Diseas</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <select class="form-control" [(ngModel)]="selectedDisea" name="selectedDisea" (change)="addDis(selectedDisea)">
+              <option hidden [ngValue]="selectedDisea" selected>Select diseas to Add </option>
+              <option *ngFor="let disea of diseasDropdown" [disabled]="isDisabled(disea)">{{disea}}</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Diseas:</label>
+            <div class="form-group">
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item pl-0" *ngFor="let disea of diseas; let i = index ">
+                  {{disea}}
+                  <button type="button" class="btn btn-light float-right" (click)="removeDisea(i)">
+                    <i class="far fa-trash-alt"></i>
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="saveProfile()">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Address Update Modal -->
+<div class="modal fade" id="addressModal" tabindex="-1" role="dialog" aria-labelledby="diseasModalEdit" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalScrollableTitle">Edit Diseas</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Address:</label>
+            <input type="text" class="form-control" id="addressline1" [(ngModel)]="addressUpdate.addressline1" name="addressline1">
+            <br>
+            <input type="text" class="form-control" id="addressline2" [(ngModel)]="addressUpdate.addressline2" name="addressline2">
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">City:</label>
+            <input type="text" class="form-control" id="city" [(ngModel)]="addressUpdate.city" name="city">
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">State:</label>
+            <input type="text" class="form-control" id="state" [(ngModel)]="addressUpdate.state" name="state">
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Postcode:</label>
+            <input type="text" class="form-control" id="postcode" [(ngModel)]="addressUpdate.postcode" name="postcode">
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Country:</label>
+            <textarea class="form-control" id="country" [(ngModel)]="addressUpdate.country" name="country"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="saveProfileAddress()">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Photo Zoom Modal -->
+<div class="modal fade" id="photoModal" tabindex="-1" role="dialog" aria-labelledby="diseasModalEdit" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+    <div class="modal-content customModal">
+      <div class="modal-body">
+        <form>
+          <div class="form-group text-center">
+            <img [src]="imageUrl" class="img-fluid rounded-circle" style="max-width: 65%">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
