@@ -17,6 +17,7 @@ export class ProfileComponent implements OnInit {
   diseasDropdown: any = [];
 
   selectedDisea = undefined;
+  viewMore: boolean = false;
 
   constructor() { }
 
