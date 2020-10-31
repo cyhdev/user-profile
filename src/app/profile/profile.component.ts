@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { environment } from '../../../src/environments/environment';
 
 @Component({
   selector: 'app-profile',
@@ -18,6 +19,7 @@ export class ProfileComponent implements OnInit {
 
   selectedDisea = undefined;
   viewMore: boolean = false;
+  environment = environment;
 
   constructor() { }
 
