@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  imgUrl: 'test env'
+  imgUrl: '../../assets/'
 };
 
 /*

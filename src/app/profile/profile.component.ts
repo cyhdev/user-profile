@@ -73,7 +73,7 @@ export class ProfileComponent implements OnInit {
     this.getProfileData();
   }
 
-  imageUrl: string = "../../assets/userA.PNG";
+  imageUrl: string = environment.imgUrl + "userA.PNG";
   fileToUpload: File = null;
 
   handleFileInput(file: FileList) {
